@@ -38,4 +38,4 @@ jobs:
           node-version: 14
 
       - name: Test Source Files
-        run: npm run lint
+        run: npm i && npm run lint
