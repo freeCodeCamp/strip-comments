@@ -19,9 +19,11 @@
   },
   "scripts": {
     "test": "mocha",
-    "cover": "nyc --reporter=text --reporter=html mocha"
+    "cover": "nyc --reporter=text --reporter=html mocha",
+    "lint": "eslint ."
   },
   "devDependencies": {
+    "eslint": "^7.26.0",
     "gulp-format-md": "^2.0.0",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1"
