@@ -4,10 +4,10 @@
  * Released under the MIT License.
  */
 
-'use strict';
+"use strict";
 
-const compile = require('./lib/compile');
-const parse = require('./lib/parse');
+const compile = require("./lib/compile");
+const parse = require("./lib/parse");
 
 /**
  * Strip all code comments from the given `input`, including protected
@@ -30,10 +30,10 @@ const parse = require('./lib/parse');
  * @api public
  */
 
-const strip = module.exports = (input, options) => {
+const strip = (module.exports = (input, options) => {
   const opts = { ...options, block: true, line: true };
   return compile(parse(input, opts), opts);
-};
+});
 
 /**
  * Strip only block comments.
