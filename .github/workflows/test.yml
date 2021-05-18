@@ -37,5 +37,8 @@ jobs:
         with:
           node-version: 14
 
-      - name: Test Source Files
+      - name: Lint Source Files
         run: npm i && npm run lint
+
+      - name: Format Source Files
+        run: npx prettier --check .
