@@ -1,12 +1,12 @@
 {
-  "name": "strip-comments",
+  "name": "@freecodecamp/strip-comments",
   "description": "Strip line and/or block comments from a string. Blazing fast, and works with JavaScript, Sass, CSS, Less.js, and a number of other languages.",
   "version": "2.0.1",
-  "homepage": "https://github.com/jonschlinkert/strip-comments",
+  "homepage": "https://github.com/freeCodeCamp/strip-comments",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
-  "repository": "jonschlinkert/strip-comments",
+  "repository": "freeCodeCamp/strip-comments",
   "bugs": {
-    "url": "https://github.com/jonschlinkert/strip-comments/issues"
+    "url": "https://github.com/freeCodeCamp/strip-comments/issues"
   },
   "license": "MIT",
   "files": [
@@ -50,7 +50,6 @@
     "css",
     "hashbang comments",
     "haskell comments",
-    "html comments",
     "java comments",
     "javascript comments",
     "javascript",

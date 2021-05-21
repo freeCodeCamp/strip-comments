@@ -32,6 +32,11 @@ Changelog entries are classified using the following labels _(from [keep-a-chang
 
 </details>
 
+## [3.0.0] - 2021-05-20
+
+**Removed**
+
+- Breaking: html language removed as it relied on lookbehind which Safari does not support
 
 ## [2.0.0] - 2019-09-14
 
