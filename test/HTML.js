@@ -5,52 +5,52 @@
  * Released under the MIT license.
  */
 
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const path = require("path");
-const assert = require("assert");
-const strip = require("../index");
+const fs = require('fs');
+const path = require('path');
+const assert = require('assert');
+const strip = require('../index');
 
-const fixture = path.join.bind(path, __dirname, "fixtures/html");
-const expected = path.join.bind(path, __dirname, "expected/html");
-const read = (src) => fs.readFileSync(src, "utf-8").replace(/\r*\n/g, "\n");
+const fixture = path.join.bind(path, __dirname, 'fixtures/html');
+const expected = path.join.bind(path, __dirname, 'expected/html');
+const read = (src) => fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');
 
-describe.skip("HTML comments", () => {
-  it("should strip HTML comments.", () => {
-    const actual = strip("No <!-- I should be gone-->comment", {
-      language: "html",
+describe.skip('HTML comments', () => {
+  it('should strip HTML comments.', () => {
+    const actual = strip('No <!-- I should be gone-->comment', {
+      language: 'html',
     });
-    assert.strictEqual(actual, "No comment");
+    assert.strictEqual(actual, 'No comment');
   });
 
-  it("should not strip comments inside quoted strings.", () => {
+  it('should not strip comments inside quoted strings.', () => {
     const input = 'No "<!-- I should NOT be gone-->"comment';
-    const actual = strip(input, { language: "html" });
+    const actual = strip(input, { language: 'html' });
     assert.strictEqual(actual, input);
   });
 
-  it("should not strip comment _parts_ inside quoted strings.", () => {
-    const name = "quoted";
+  it('should not strip comment _parts_ inside quoted strings.', () => {
+    const name = 'quoted';
     const input = read(fixture(`${name}.html`));
     const output = read(expected(`${name}.html`));
-    const actual = strip(input, { language: "html" });
+    const actual = strip(input, { language: 'html' });
     assert.strictEqual(actual, output);
   });
 
-  it("should strip multiline comments", () => {
-    const name = "multiline";
+  it('should strip multiline comments', () => {
+    const name = 'multiline';
     const input = read(fixture(`${name}.html`));
     const output = read(expected(`${name}.html`));
-    const actual = strip(input, { language: "html" });
+    const actual = strip(input, { language: 'html' });
     assert.strictEqual(actual, output);
   });
 
-  it("should strip comments with only dashes", () => {
-    const name = "dashes";
+  it('should strip comments with only dashes', () => {
+    const name = 'dashes';
     const input = read(fixture(`${name}.html`));
     const output = read(expected(`${name}.html`));
-    const actual = strip(input, { language: "html" });
+    const actual = strip(input, { language: 'html' });
     assert.strictEqual(actual, output);
   });
 });

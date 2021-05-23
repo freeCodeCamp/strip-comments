@@ -4,10 +4,10 @@
  * Released under the MIT License.
  */
 
-"use strict";
+'use strict';
 
-const compile = require("./lib/compile");
-const parse = require("./lib/parse");
+const compile = require('./lib/compile');
+const parse = require('./lib/parse');
 
 /**
  * Strip all code comments from the given `input`, including protected
