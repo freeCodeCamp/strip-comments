@@ -5,6 +5,9 @@
   "homepage": "https://github.com/freeCodeCamp/strip-comments",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "freeCodeCamp/strip-comments",
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": {
     "url": "https://github.com/freeCodeCamp/strip-comments/issues"
   },
