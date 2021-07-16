@@ -142,6 +142,12 @@ describe('JavaScript comments', () => {
     const expected = ['', '', 'someCode();', 'someMoreCode();'].join('\n');
     assert.strictEqual(actual, expected);
   });
+
+  it('should not break on comments that are in between empty strings', () => {
+    const actual = strip('""; // comment \n""');
+    const expected = '""; \n""';
+    assert.strictEqual(actual, expected);
+  });
 });
 
 describe('error handling:', () => {
