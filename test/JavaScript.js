@@ -7,10 +7,10 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
-const strip = require('../index');
+import fs from 'fs';
+import path from 'path';
+import assert from 'assert';
+import strip from '../index';
 
 const tests = path.join.bind(path, __dirname);
 const read = (src) => fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');

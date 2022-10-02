@@ -1,18 +1,18 @@
 'use strict';
 
-exports.ada = { LINE_REGEX: /^--.*/ };
-exports.apl = { LINE_REGEX: /^⍝.*/ };
+export const ada = { LINE_REGEX: /^--.*/ };
+export const apl = { LINE_REGEX: /^⍝.*/ };
 
-exports.applescript = {
+export const applescript = {
   BLOCK_OPEN_REGEX: /^\(\*/,
   BLOCK_CLOSE_REGEX: /^\*\)/,
 };
 
-exports.csharp = {
+export const csharp = {
   LINE_REGEX: /^\/\/.*/,
 };
 
-exports.haskell = {
+export const haskell = {
   BLOCK_OPEN_REGEX: /^\{-/,
   BLOCK_CLOSE_REGEX: /^-\}/,
   LINE_REGEX: /^--.*/,
@@ -29,60 +29,59 @@ exports.html = {
   BLOCK_CLOSE_STRICT_LOOSE_REGEX: /^(?<!(?:<!-))--\s*>(\s*\n+|\n*)/,
 };
 */
-exports.javascript = {
+export const javascript = {
   BLOCK_OPEN_REGEX: /^\/\*\*?(!?)/,
   BLOCK_CLOSE_REGEX: /^\*\/(\n?)/,
   LINE_REGEX: /^\/\/(!?).*/,
 };
 
-exports.lua = {
+export const lua = {
   BLOCK_OPEN_REGEX: /^--\[\[/,
   BLOCK_CLOSE_REGEX: /^\]\]/,
   LINE_REGEX: /^--.*/,
 };
 
-exports.matlab = {
+export const matlab = {
   BLOCK_OPEN_REGEX: /^%{/,
   BLOCK_CLOSE_REGEX: /^%}/,
   LINE_REGEX: /^%.*/,
 };
 
-exports.perl = {
+export const perl = {
   LINE_REGEX: /^#.*/,
 };
 
-exports.php = {
-  ...exports.javascript,
+export const php = {
+  ...javascript,
   LINE_REGEX: /^(#|\/\/).*?(?=\?>|\n)/,
 };
 
-exports.python = {
+export const python = {
   BLOCK_OPEN_REGEX: /^"""/,
   BLOCK_CLOSE_REGEX: /^"""/,
   LINE_REGEX: /^#.*/,
 };
 
-exports.ruby = {
+export const ruby = {
   BLOCK_OPEN_REGEX: /^=begin/,
   BLOCK_CLOSE_REGEX: /^=end/,
   LINE_REGEX: /^#.*/,
 };
 
-exports.shebang = exports.hashbang = {
+export const hashbang = {
   LINE_REGEX: /^#!.*/,
-};
+}
 
-exports.c = exports.javascript;
-exports.csharp = exports.javascript;
-exports.css = exports.javascript;
-exports.java = exports.javascript;
-exports.js = exports.javascript;
-exports.less = exports.javascript;
-exports.pascal = exports.applescript;
-exports.ocaml = exports.applescript;
-exports.sass = exports.javascript;
-exports.sql = exports.ada;
-exports.swift = exports.javascript;
-exports.ts = exports.javascript;
-exports.typscript = exports.javascript;
-// exports.xml = exports.html;
+export const shebang = hashbang 
+export const c = javascript;
+export const css = javascript;
+export const java = javascript;
+export const js = javascript;
+export const less = javascript;
+export const swift = javascript;
+export const ts = javascript;
+export const typscript = javascript;
+export const sass = javascript;
+export const pascal = applescript;
+export const ocaml = applescript;
+export const sql = ada;

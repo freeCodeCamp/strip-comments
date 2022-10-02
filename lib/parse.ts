@@ -1,7 +1,7 @@
 'use strict';
 
-const { Node, Block } = require('./Node');
-const languages = require('./languages');
+import { TextNode, Block }  from './Node';
+import * as languages  from './languages';
 
 const constants = {
   ESCAPED_CHAR_REGEX: /^\\./,
@@ -9,7 +9,17 @@ const constants = {
   NEWLINE_REGEX: /^\r*\n/,
 };
 
-const parse = (input, options = {}) => {
+export interface Options {
+  language?: string;
+  line?: boolean;
+  block?: boolean;
+  keepProtected?: boolean;
+  preserveNewlines?: boolean;
+  safe?: boolean;
+  first?: boolean; 
+}
+
+const parse = (input: string | number, options: Options) => {
   if (typeof input !== 'string') {
     throw new TypeError('Expected input to be a string');
   }
@@ -26,8 +36,8 @@ const parse = (input, options = {}) => {
   const { LINE_REGEX, BLOCK_OPEN_REGEX, BLOCK_CLOSE_REGEX } = lang;
   let block = cst;
   let remaining = input;
-  let token;
-  let prev;
+  let token: { type: string, value: string, match: RegExpExecArray, newline?: string };
+  let prev: Block | TextNode;
 
   const source = [BLOCK_OPEN_REGEX, BLOCK_CLOSE_REGEX].filter(Boolean);
   let tripleQuotes = false;
@@ -45,7 +55,7 @@ const parse = (input, options = {}) => {
     return value;
   };
 
-  const scan = (regex, type = 'text') => {
+  const scan = (regex: RegExp, type = 'text') => {
     const match = regex.exec(remaining);
     if (match) {
       consume(match[0]);
@@ -53,16 +63,21 @@ const parse = (input, options = {}) => {
     }
   };
 
-  const push = (node) => {
+  const push = (node: Block | TextNode) => {
     if (prev && prev.type === 'text' && node.type === 'text') {
       prev.value += node.value;
       return;
     }
+
     block.push(node);
-    if (node.nodes) {
-      stack.push(node);
-      block = node;
+
+    if (node instanceof Block) {
+      if (node.nodes) {
+        stack.push(node);
+        block = node;
+      }
     }
+
     prev = node;
   };
 
@@ -81,7 +96,7 @@ const parse = (input, options = {}) => {
   while (remaining !== '') {
     // escaped characters
     if ((token = scan(constants.ESCAPED_CHAR_REGEX, 'text'))) {
-      push(new Node(token));
+      push(new TextNode(token));
       continue;
     }
 
@@ -92,14 +107,14 @@ const parse = (input, options = {}) => {
       !(tripleQuotes && remaining.startsWith('"""'))
     ) {
       if ((token = scan(constants.QUOTED_STRING_REGEX, 'text'))) {
-        push(new Node(token));
+        push(new TextNode(token));
         continue;
       }
     }
 
     // newlines
     if ((token = scan(constants.NEWLINE_REGEX, 'newline'))) {
-      push(new Node(token));
+      push(new TextNode(token));
       continue;
     }
 
@@ -111,7 +126,7 @@ const parse = (input, options = {}) => {
     ) {
       if ((token = scan(BLOCK_OPEN_REGEX, 'open'))) {
         push(new Block({ type: 'block' }));
-        push(new Node(token));
+        push(new TextNode(token));
         continue;
       }
     }
@@ -120,7 +135,7 @@ const parse = (input, options = {}) => {
     if (BLOCK_CLOSE_REGEX && block.type === 'block' && options.block) {
       if ((token = scan(BLOCK_CLOSE_REGEX, 'close'))) {
         token.newline = token.match[1] || '';
-        push(new Node(token));
+        push(new TextNode(token));
         pop();
         continue;
       }
@@ -129,21 +144,21 @@ const parse = (input, options = {}) => {
     // line comment
     if (LINE_REGEX && block.type !== 'block' && options.line) {
       if ((token = scan(LINE_REGEX, 'line'))) {
-        push(new Node(token));
+        push(new TextNode(token));
         continue;
       }
     }
 
     // Plain text (skip "C" since some languages use "C" to start comments)
     if ((token = scan(/^[a-zABD-Z0-9\t ]+/, 'text'))) {
-      push(new Node(token));
+      push(new TextNode(token));
       continue;
     }
 
-    push(new Node({ type: 'text', value: consume(remaining[0]) }));
+    push(new TextNode({ type: 'text', value: consume(remaining[0]) }));
   }
 
   return cst;
 };
 
-module.exports = parse;
+export default parse;

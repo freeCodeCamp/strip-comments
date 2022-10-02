@@ -7,10 +7,10 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
-const strip = require('../index');
+import fs from 'fs';
+import path from 'path';
+import assert from 'assert';
+import strip from '../index';
 
 const fixture = path.join.bind(path, __dirname, 'fixtures/other');
 const expected = path.join.bind(path, __dirname, 'expected/other');
