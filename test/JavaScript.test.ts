@@ -12,14 +12,15 @@ import path from 'path';
 import strip from '../index';
 
 const tests = path.join.bind(path, __dirname);
-const read = (src: PathOrFileDescriptor) => fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');
+const read = (src: PathOrFileDescriptor) =>
+  fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');
 
 describe('JavaScript comments', () => {
   it('should strip all comments', () => {
     const actual = strip(
       "'foo'; // this is a comment\n/* me too */ var abc = 'xyz';"
     );
-    expect(actual).toStrictEqual("'foo'; \n var abc = 'xyz';")
+    expect(actual).toStrictEqual("'foo'; \n var abc = 'xyz';");
   });
 
   it('should work on unclosed (invalid) blocks', () => {
@@ -37,7 +38,7 @@ describe('JavaScript comments', () => {
     // see https://github.com/jonschlinkert/extract-comments/issues/12
     const expected = "'foo/bar'.replace(/o\\//, 'g')";
     const actual = strip.line(expected);
-    expect(actual).toEqual(expected)
+    expect(actual).toEqual(expected);
   });
 
   it('should strip block comments', () => {
@@ -66,7 +67,7 @@ describe('JavaScript comments', () => {
   it('should not strip non-comments in quoted strings 2', () => {
     const expected = read(tests('fixtures/quoted-strings.js'));
     const actual = strip(expected);
-    expect(actual).toEqual(expected)
+    expect(actual).toEqual(expected);
   });
 
   // see https://github.com/jonschlinkert/strip-comments/issues/18
@@ -82,7 +83,7 @@ describe('JavaScript comments', () => {
     const before = JSON.parse(expected);
     const res = strip(expected);
     const after = JSON.parse(res);
-    expect(before).toEqual(after)
+    expect(before).toEqual(after);
   });
 
   it('should strip all but not `/*/`', () => {
@@ -172,7 +173,7 @@ describe('error handling:', () => {
     const actual = strip('');
     const expected = '';
     expect(typeof actual).toEqual('string');
-    expect(actual).toEqual(expected)
+    expect(actual).toEqual(expected);
   });
 });
 
@@ -323,5 +324,5 @@ describe('performance', () => {
     `);
     const expected = actual;
     expect(actual).toStrictEqual(expected);
-  })
+  });
 });

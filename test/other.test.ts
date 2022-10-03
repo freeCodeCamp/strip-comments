@@ -13,7 +13,8 @@ import strip from '../index';
 
 const fixture = path.join.bind(path, __dirname, 'fixtures/other');
 const expected = path.join.bind(path, __dirname, 'expected/other');
-const read = (src: PathOrFileDescriptor) => fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');
+const read = (src: PathOrFileDescriptor) =>
+  fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');
 
 describe('other languages', () => {
   it.only('should strip Ada comments', () => {
@@ -21,7 +22,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name, preserveNewlines: true });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip APL comments', () => {
@@ -29,7 +30,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name, preserveNewlines: true });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip C comments', () => {
@@ -37,7 +38,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name, preserveNewlines: true });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip AppleScript comments', () => {
@@ -45,7 +46,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip Haskell comments', () => {
@@ -54,7 +55,7 @@ describe('other languages', () => {
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
 
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip Lua comments', () => {
@@ -62,7 +63,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip MATLAB comments', () => {
@@ -70,7 +71,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip OCaml comments', () => {
@@ -78,7 +79,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip Pascal comments', () => {
@@ -86,7 +87,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip PHP comments', () => {
@@ -94,7 +95,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip Perl comments', () => {
@@ -102,7 +103,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip Python comments', () => {
@@ -110,7 +111,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip Ruby comments', () => {
@@ -118,7 +119,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip shebang comments', () => {
@@ -126,7 +127,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip SQL comments', () => {
@@ -134,7 +135,7 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 
   it('should strip Swift comments', () => {
@@ -142,6 +143,6 @@ describe('other languages', () => {
     const input = read(fixture(`${name}.txt`));
     const output = read(expected(`${name}.txt`));
     const actual = strip(input, { language: name });
-    expect(actual).toEqual(output)
+    expect(actual).toEqual(output);
   });
 });

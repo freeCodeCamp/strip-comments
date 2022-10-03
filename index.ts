@@ -33,8 +33,7 @@ import parse, { Options } from './lib/parse';
 const strip = (input: string | number, options?: Options) => {
   const opts = { ...options, block: true, line: true };
   return compile(parse(input, opts), opts);
-}
-
+};
 
 /**
  * Strip only block comments.
@@ -114,6 +113,6 @@ strip.first = (input: string | number, options?: Options) => {
  * @api public
  */
 
- strip.parse = parse;
+strip.parse = parse;
 
- export default strip
+export default strip;
