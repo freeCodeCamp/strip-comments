@@ -7,5 +7,5 @@
     "esModuleInterop": true
   },
   "globals": ["window", "debug"],
-  "include": ["./lib/**/*", "./test/**/*"]
+  "include": ["./lib/**/*"]
 }
