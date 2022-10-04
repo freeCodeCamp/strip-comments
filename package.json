@@ -23,7 +23,7 @@
   "scripts": {
     "test": "jest",
     "cover": "nyc --reporter=text --reporter=html mocha",
-    "lint": "eslint .",
+    "lint": "tsc && eslint .",
     "format": "prettier --write .",
     "prepare": "husky install",
     "build": "tsc"
