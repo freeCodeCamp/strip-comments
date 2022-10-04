@@ -7,21 +7,22 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
-const strip = require('../index');
+import fs, { PathOrFileDescriptor } from 'fs';
+import path from 'path';
+import assert from 'assert';
+import strip from '../index';
 
 const fixture = path.join.bind(path, __dirname, 'fixtures/html');
 const expected = path.join.bind(path, __dirname, 'expected/html');
-const read = (src) => fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');
-
+const read = (src: PathOrFileDescriptor) =>
+  fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');
 describe.skip('HTML comments', () => {
   it('should strip HTML comments.', () => {
     const actual = strip('No <!-- I should be gone-->comment', {
       language: 'html',
     });
-    assert.strictEqual(actual, 'No comment');
+
+    expect(actual).toEqual('No comment');
   });
 
   it('should not strip comments inside quoted strings.', () => {

@@ -6,8 +6,8 @@
 
 'use strict';
 
-const compile = require('./lib/compile');
-const parse = require('./lib/parse');
+import compile from './lib/compile';
+import parse, { Options } from './lib/parse';
 
 /**
  * Strip all code comments from the given `input`, including protected
@@ -30,10 +30,10 @@ const parse = require('./lib/parse');
  * @api public
  */
 
-const strip = (module.exports = (input, options) => {
+const strip = (input: string | number, options?: Options) => {
   const opts = { ...options, block: true, line: true };
   return compile(parse(input, opts), opts);
-});
+};
 
 /**
  * Strip only block comments.
@@ -51,7 +51,7 @@ const strip = (module.exports = (input, options) => {
  * @api public
  */
 
-strip.block = (input, options) => {
+strip.block = (input: string | number, options?: Options) => {
   const opts = { ...options, block: true };
   return compile(parse(input, opts), opts);
 };
@@ -71,7 +71,7 @@ strip.block = (input, options) => {
  * @api public
  */
 
-strip.line = (input, options) => {
+strip.line = (input: string | number, options?: Options) => {
   const opts = { ...options, line: true };
   return compile(parse(input, opts), opts);
 };
@@ -92,7 +92,7 @@ strip.line = (input, options) => {
  * @api public
  */
 
-strip.first = (input, options) => {
+strip.first = (input: string | number, options?: Options) => {
   const opts = { ...options, block: true, line: true, first: true };
   return compile(parse(input, opts), opts);
 };
@@ -114,3 +114,5 @@ strip.first = (input, options) => {
  */
 
 strip.parse = parse;
+
+export default strip;
