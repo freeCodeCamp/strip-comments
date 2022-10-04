@@ -13,7 +13,7 @@ class TextNode {
   match?: RegExpExecArray;
   newline?: string;
 
-  constructor(node: TextNodeConstructor ) {
+  constructor(node: TextNodeConstructor) {
     this.type = node.type;
     if (node.value) this.value = node.value;
     if (node.match) this.match = node.match;
@@ -26,11 +26,11 @@ class TextNode {
 }
 
 export interface BlockConstructor extends TextNodeConstructor {
-    nodes?: (Block|TextNode)[];
+  nodes?: (Block | TextNode)[];
 }
 
 class Block extends TextNode {
-  nodes?: (Block|TextNode)[];
+  nodes?: (Block | TextNode)[];
 
   constructor(node: BlockConstructor) {
     super(node);

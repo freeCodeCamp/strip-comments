@@ -1,7 +1,7 @@
 'use strict';
 
-import { TextNode, Block }  from './Node';
-import * as languages  from './languages';
+import { TextNode, Block } from './Node';
+import * as languages from './languages';
 
 const constants = {
   ESCAPED_CHAR_REGEX: /^\\./,
@@ -16,7 +16,7 @@ export interface Options {
   keepProtected?: boolean;
   preserveNewlines?: boolean;
   safe?: boolean;
-  first?: boolean; 
+  first?: boolean;
 }
 
 const parse = (input: string | number, options: Options) => {
@@ -36,7 +36,12 @@ const parse = (input: string | number, options: Options) => {
   const { LINE_REGEX, BLOCK_OPEN_REGEX, BLOCK_CLOSE_REGEX } = lang;
   let block = cst;
   let remaining = input;
-  let token: { type: string, value: string, match: RegExpExecArray, newline?: string };
+  let token: {
+    type: string;
+    value: string;
+    match: RegExpExecArray;
+    newline?: string;
+  };
   let prev: Block | TextNode;
 
   const source = [BLOCK_OPEN_REGEX, BLOCK_CLOSE_REGEX].filter(Boolean);

@@ -70,9 +70,9 @@ export const ruby = {
 
 export const hashbang = {
   LINE_REGEX: /^#!.*/,
-}
+};
 
-export const shebang = hashbang 
+export const shebang = hashbang;
 export const c = javascript;
 export const css = javascript;
 export const java = javascript;
