@@ -30,3 +30,4 @@ TODO.md
 package-lock.json
 .eslintcache
 build
+.parcel-cache/
